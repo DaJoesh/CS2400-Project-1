@@ -1,3 +1,3 @@
-public class BagInterface{
+public interface BagInterface{
     
 }
