@@ -3,8 +3,8 @@ public class ArrayBagTest<T> implements BagInterface<T>
     private final T[] bag;
     private static final int DEFAULT_CAPACITY = 25;
     private int numberOfEntries;
-    private boolean integrityOK;
-    private int MAX_CAPACITY;
+    private boolean integrityOK = false;
+    private int MAX_CAPACITY = 10000;
     public ArrayBagTest()
     {
         this(DEFAULT_CAPACITY);
