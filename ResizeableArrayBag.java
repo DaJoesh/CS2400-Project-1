@@ -177,9 +177,68 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         
     }
 
-    public BagInterface<T> intersection(BagInterface<T> input1, BagInterface<T> input2)
+    public ResizeableArrayBag<T> intersection(BagInterface<T> input1, BagInterface<T> input2)
     {
-        return input1;
+        int counter = 0;
+        @SuppressWarnings("unchecked")
+        T[] tempBag1 = (T[])new Object[input1.getCurrentSize()];
+        @SuppressWarnings("unchecked")
+        T[] tempBag2 = (T[])new Object[input2.getCurrentSize()];
+        tempBag1 = input1.toArray();
+        tempBag2 = input2.toArray();
+        @SuppressWarnings("unchecked")
+        T[] tempBag3 = (T[])new Object[tempBag1.length+tempBag2.length]; 
+        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(tempBag3.length);
+        for (int i = 0; i<tempBag1.length;i++)
+        {
+            tempBag3[i] = tempBag1[i];
+            counter++;
+        }
+        for (int j = 0; j<tempBag2.length;j++)
+        {
+            tempBag3[counter]=tempBag2[j];
+            counter++;
+        }
+        for (int k = 0; k<tempBag3.length;k++)
+        {   
+            for(int l = 0; l<tempBag3.length;l++)
+            {
+                if (l!=k)
+                {
+                    if(tempBag3[l].equals(tempBag3[k]))
+                    {
+                    System.out.println("yes it equals");
+                    //tempBag3.removeEntry(k);
+                    }
+                }
+            }
+        }
+        /*
+        while(j < tempBag2.length)
+        {
+            if(tempBag3[counter].equals(tempBag2[j]))
+            {
+                last.add(tempBag2[j]);
+                System.out.println("tempBag2 into tempBag3");
+            }
+            j++;
+            counter++;
+            System.out.println("counter is " + counter);
+        }
+        */
+        return last;
+        /*ResizeableArrayBag<T> temp = new ResizeableArrayBag<T>(input1.getCurrentSize()+input2.getCurrentSize());
+        temp = temp.union(input1, input2);
+        for(int i = 0; i<temp.getCurrentSize();i++)
+        {   
+            for(int j = 0; j<temp.getCurrentSize();j++)
+            {
+                if(j!=temp)
+            }
+            counter++;
+        }*/
+
+
     }
 
     public BagInterface<T> difference(BagInterface<T> input1, BagInterface<T> input2)
