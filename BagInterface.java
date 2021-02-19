@@ -19,7 +19,7 @@ public interface BagInterface<T>
 
     /** removes one occurence of a given entry from this bag if possible
     @param anEntry The entry to be removed
-    @return True od the removal was successful, false if not */
+    @return True if the removal was successful, false if not */
     public boolean remove(T anEntry);
 
     /** removes all entries in this bag */

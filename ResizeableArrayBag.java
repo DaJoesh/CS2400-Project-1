@@ -11,7 +11,7 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         this(DEFAULT_CAPACITY);
     } //end constructor
     /** creates an empty bag with given initial capacity.
-        @param camacity the integer capacity desired */
+        @param desiredCapacity the integer capacity desired */
     public ResizeableArrayBag(int desiredCapacity)
     {
         if(desiredCapacity <= MAX_CAPACITY)

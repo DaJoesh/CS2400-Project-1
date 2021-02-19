@@ -1,6 +1,10 @@
 
 public class ArrayBagTest
-{
+{   
+    /**
+    Main method used to test ResizeableArrayBag
+    @param args standard for main method
+    */
     public static void main(String[] args)
     {   //UNION START
         ResizeableArrayBag<String> array1= new ResizeableArrayBag<String>();
@@ -49,7 +53,11 @@ public class ArrayBagTest
 
 
 
-
+    /** prints out contents of any BagInterface item
+    @param title method or bag title
+    @param input input bag to be printed
+    @return nothing but prints out the contents of the input bag neatly.
+    */
     public static void printOut(String title, BagInterface<String> input)
     {
         System.out.println(title + ": ");
