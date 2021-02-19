@@ -180,6 +180,7 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
     public ResizeableArrayBag<T> intersection(BagInterface<T> input1, BagInterface<T> input2)
     {
         int counter = 0;
+        int counter2 = 0;
         @SuppressWarnings("unchecked")
         T[] tempBag1 = (T[])new Object[input1.getCurrentSize()];
         @SuppressWarnings("unchecked")
@@ -188,7 +189,6 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         tempBag2 = input2.toArray();
         @SuppressWarnings("unchecked")
         T[] tempBag3 = (T[])new Object[tempBag1.length+tempBag2.length]; 
-        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(tempBag3.length);
         for (int i = 0; i<tempBag1.length;i++)
         {
             tempBag3[i] = tempBag1[i];
@@ -213,6 +213,7 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
                 }
             }
         }
+        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(counter2);
         /*
         while(j < tempBag2.length)
         {
