@@ -11,27 +11,10 @@ public class ArrayBagTest
         array2.add("poop");
         array2.add("pee");
         array2.add("fart");
-        ResizeableArrayBag<String> arrayUnion= new ResizeableArrayBag<String>(array1.getCurrentSize()+array2.getCurrentSize());
-        arrayUnion = arrayUnion.union(array1, array2);
-        ResizeableArrayBag<String> arrayIntersection= new ResizeableArrayBag<String>(array1.getCurrentSize()+array2.getCurrentSize());
-        if(arrayUnion.contains("cat") && arrayUnion.contains("dog") && arrayUnion.contains("human") && arrayUnion.contains("poop") && arrayUnion.contains("pee") && arrayUnion.contains("fart"))
-        {
-            System.out.println("yes, arrayUnion has cat, dog, human, poop, pee, and fart.");
-        }
-        else
-            System.out.println("no, arrayUnion doesn't have one of them.");
-        String[] newArray= array1.toArray();
-        for(int i = 0; i<newArray.length;i++)
-        {
-            System.out.println(array1.toArray()[i]);
-        }
-        /*for(int i = 0; i<array2.toArray().length;i++)
-        {
-            System.out.println(array2.toArray()[i]);
-        }
-        */
+        BagInterface<String> arrayUnion= new ResizeableArrayBag<String>(array1.getCurrentSize()+array2.getCurrentSize());
+        arrayUnion = array1.union(array2);
+        printOut("union", arrayUnion);
         //UNION END
-
 
         //INTERSECTION START
         ResizeableArrayBag<String> array3= new ResizeableArrayBag<String>();
@@ -42,12 +25,38 @@ public class ArrayBagTest
         array4.add("no");
         array4.add("funny");
         array4.add("haha");
-        arrayIntersection = arrayIntersection.intersection(array3, array4);
-        if(arrayIntersection.contains("funny") && arrayIntersection.contains("haha"))
+        BagInterface<String> arrayIntersection= new ResizeableArrayBag<String>(array3.getCurrentSize()+array4.getCurrentSize());
+        arrayIntersection = array3.intersection(array4);
+        printOut("intersection", arrayIntersection);
+        //INTERSECTION END
+
+        //DIFFERENCE START
+        ResizeableArrayBag<String> array5= new ResizeableArrayBag<String>();
+        ResizeableArrayBag<String> array6= new ResizeableArrayBag<String>();
+        array5.add("funny");
+        array5.add("haha");
+        array5.add("funny");
+        array6.add("no");
+        array6.add("funny");
+        array6.add("haha");
+        BagInterface<String> arrayDifference = new ResizeableArrayBag<String>(array5.getCurrentSize()+array6.getCurrentSize());
+        arrayDifference = array5.difference(array6);
+        printOut("difference", arrayDifference);
+        //DIFFERENCE END        
+    }
+
+
+
+
+
+
+    public static void printOut(String title, BagInterface<String> input)
+    {
+        System.out.println(title + ": ");
+        while(!input.isEmpty())
         {
-            System.out.println("yes");
+            System.out.println(input.remove());
         }
-        else
-            System.out.println("no");
+        System.out.println();
     }
 }   

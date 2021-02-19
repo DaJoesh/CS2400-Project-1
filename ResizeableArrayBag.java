@@ -169,8 +169,13 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         return getIndexOf(anEntry) > -1; // or >= 0
     } //end contains
 
-    public ResizeableArrayBag<T> union(BagInterface<T> input1, BagInterface<T> input2)
+    /** adds the contents of an input bag to the original bag
+    @param input1 The bag that you would like add to the original bag
+    @return contents of both bags in the form of a bag*/
+    public BagInterface<T> union(BagInterface<T> input1/*, BagInterface<T> input2*/)
     {   
+        /* First Attempt***********
+
         int counter = 0;
         @SuppressWarnings("unchecked")
         T[] tempBag1 = (T[])new Object[input1.getCurrentSize()];
@@ -196,11 +201,35 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
                 last.add(tempBag3[k]);
             }
         return last;
+        */
+
+
+        //Attempt 2*********
+
+        ResizeableArrayBag<T> tempBag1 = (ResizeableArrayBag<T>) input1;
+        BagInterface<T> tempBag2 = new ResizeableArrayBag<T>();
+        for (int i = 0; i<numberOfEntries; i++)
+        {
+            tempBag2.add(bag[i]);
+        }
+        for (int j = 0; j<tempBag1.getCurrentSize();j++)
+        {
+            tempBag2.add(tempBag1.bag[j]);
+        }
+
+        return tempBag2;
         
     }
 
-    public ResizeableArrayBag<T> intersection(BagInterface<T> input1, BagInterface<T> input2)
+    /** adds the contents of the items that both the original and the input bag share. If they share the same item multiple times, it adds the least amount (i.e. bag 1 has item a twice and bag 2 has item b three times - it will add it only twice, since they don't both share it three times)
+    @param input1 The bag that you would like to compare to the original bag
+    @return contents that both bags share in the form of a bag*/
+    
+    public BagInterface<T> intersection(BagInterface<T> input1 /*, BagInterface<T> input2*/)
     {
+        /* Attempt 1*****
+
+
         int counter = 0;
         int counter2 = 0;
         @SuppressWarnings("unchecked")
@@ -235,37 +264,51 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
                 }
             }
         }
-        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(counter2);
-        /*
-        while(j < tempBag2.length)
-        {
-            if(tempBag3[counter].equals(tempBag2[j]))
-            {
-                last.add(tempBag2[j]);
-                System.out.println("tempBag2 into tempBag3");
-            }
-            j++;
-            counter++;
-            System.out.println("counter is " + counter);
-        }
-        */
+        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(counter2)
         return last;
-        /*ResizeableArrayBag<T> temp = new ResizeableArrayBag<T>(input1.getCurrentSize()+input2.getCurrentSize());
-        temp = temp.union(input1, input2);
-        for(int i = 0; i<temp.getCurrentSize();i++)
-        {   
-            for(int j = 0; j<temp.getCurrentSize();j++)
+        */
+
+
+        //Attempt 2*********
+
+        BagInterface<T> bag1 = new ResizeableArrayBag<>();
+        BagInterface<T> bag2 = new ResizeableArrayBag<>();
+        ResizeableArrayBag<T> bag3 = (ResizeableArrayBag<T>)input1;
+        for (int i = 0; i<bag3.numberOfEntries;i++)
+        {
+            bag2.add(bag3.bag[i]);
+        }
+        for (int j = 0; j< getCurrentSize();j++)
+        {
+            if(bag2.contains(bag[j]))
             {
-                if(j!=temp)
+                bag1.add(bag[j]);
+                bag2.remove(bag[j]);
             }
-            counter++;
-        }*/
-
-
+        }
+        return bag1;
     }
 
-    public BagInterface<T> difference(BagInterface<T> input1, BagInterface<T> input2)
+    /** adds the difference of the amount of times a certain item occurs in both bags (i.e. if bag 1 has an item occur five times and bag 2 has the item occur three times, it will return that item in a bag two times)
+    @param input1 The bag that you would like add to the original bag
+    @return the difference of the contents that both bag 1 and 2 share in the form of a bag*/
+    public BagInterface<T> difference(BagInterface<T> input1)
     {
-        return input1;
+        //Attempt 1********
+
+        BagInterface<T> bag1 = new ResizeableArrayBag<>();
+        ResizeableArrayBag<T> bag2 = (ResizeableArrayBag<T>)input1;
+        for(int i = 0; i < numberOfEntries; i++)
+        {
+            bag1.add(bag[i]);
+        }
+        for(int j = 0; j < bag2.getCurrentSize(); j++)
+        {
+            if(bag1.contains(bag2.bag[j]))
+            {
+                bag1.remove(bag2.bag[j]);
+            }
+        }
+        return bag1;
     }
 }

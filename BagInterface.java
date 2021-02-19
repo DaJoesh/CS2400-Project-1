@@ -43,18 +43,18 @@ public interface BagInterface<T>
     @param inputBag1 The entries in bag one to be retrieved
     @param inputBag2 The entries in bag two to be retrieved
     @return A newly created bag with the union of the two bag entries */
-    public BagInterface<T> union(BagInterface<T> inputBag1, BagInterface<T> inputBag2);
+    public BagInterface<T> union(BagInterface<T> inputBag1/*, BagInterface<T> inputBag2*/);
 
     /** find the intersection of two bags
     @param inputBag1 The entries in bag one to be searched
     @param inputBag2 The entries in bag two to be searched
     @return A newly created bag with the union of the two bag entries */
-    public BagInterface<T> intersection(BagInterface<T> inputBag1, BagInterface<T> inputBag2);
+    public BagInterface<T> intersection(BagInterface<T> inputBag1/*, BagInterface<T> inputBag2*/);
 
     /** find the differnece of two bags
     @param inputBag1 The entries in bag one to be searched
     @param inputBag2 The entries in bag two to be searched
     @return A newly created bag with the difference of the two bag entries */
-    public BagInterface<T> difference(BagInterface<T> inputBag1, BagInterface<T> inputBag2);
+    public BagInterface<T> difference(BagInterface<T> inputBag1/*, BagInterface<T> inputBag2*/);
 
 }
