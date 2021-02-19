@@ -13,11 +13,11 @@ public interface BagInterface<T>
     @return True if the addition was successful, false if not */
     public boolean add(T newEntry);
 
-    /** removes one occurence of a given entry from this baf if possible
+    /** removes one occurence of a given entry from this bag if possible
     @return either the removeved entry, if the removal was successful or null*/
     public T remove();
 
-    /** removes one occurence of a given entry from this baf if possible
+    /** removes one occurence of a given entry from this bag if possible
     @param anEntry The entry to be removed
     @return True od the removal was successful, false if not */
     public boolean remove(T anEntry);

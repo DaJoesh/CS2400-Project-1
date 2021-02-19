@@ -112,6 +112,10 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         return anEntry.equals(result);
     }// end remove
 
+    /** Gets the index of the entry and returns how many times it occurs
+    @param anEntry The entry to be found
+    @return the integer amount of times that the entry occurs
+     */
     private int getIndexOf(T anEntry)
     {
         int where = -1;
@@ -128,8 +132,11 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
             index++;
         }
         return where;
-    }
-    
+    }//end getIndexOf
+
+    /** removes any occurence of a given entry from this bag if possible
+    @param givenIndex The entry to be removed
+    @return True if the removal was successful, false if not */
     private T removeEntry(int givenIndex)
     {
         T result = null;
@@ -142,14 +149,16 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
             numberOfEntries--;
         }
         return result;
-    }
-
+    }//end removeEntry
+    
+    /** removes one occurence of a given entry from this bag if possible
+    @return either the removeved entry, if the removal was successful or null*/
     public T remove()
     {
         checkIntegrity();
         T result = removeEntry(numberOfEntries-1);
         return result;
-    }
+    }//end remove
 
     /** Removes all entries from this bag */
     public void clear()
@@ -158,7 +167,7 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         {
             remove();
         }
-    }// end clear
+    }//end clear
 
     /** tests whether this bad contains a given entry
     @param anEntry The entry to locate
@@ -174,38 +183,6 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
     @return contents of both bags in the form of a bag*/
     public BagInterface<T> union(BagInterface<T> input1/*, BagInterface<T> input2*/)
     {   
-        /* First Attempt***********
-
-        int counter = 0;
-        @SuppressWarnings("unchecked")
-        T[] tempBag1 = (T[])new Object[input1.getCurrentSize()];
-        @SuppressWarnings("unchecked")
-        T[] tempBag2 = (T[])new Object[input2.getCurrentSize()];
-        tempBag1 = input1.toArray();
-        tempBag2 = input2.toArray();
-        @SuppressWarnings("unchecked")
-        T[] tempBag3 = (T[])new Object[tempBag1.length+tempBag2.length];
-        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(tempBag3.length);
-            for (int i = 0; i<tempBag1.length;i++)
-            {   
-                tempBag3[i] = tempBag1[i];
-                counter++;
-            }
-            for (int j = 0; j<tempBag2.length;j++)
-            {
-                tempBag3[counter] = tempBag2[j];
-                counter++;
-            }
-            for (int k = 0; k<tempBag3.length;k++)
-            {
-                last.add(tempBag3[k]);
-            }
-        return last;
-        */
-
-
-        //Attempt 2*********
-
         ResizeableArrayBag<T> tempBag1 = (ResizeableArrayBag<T>) input1;
         BagInterface<T> tempBag2 = new ResizeableArrayBag<T>();
         for (int i = 0; i<numberOfEntries; i++)
@@ -218,59 +195,14 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
         }
 
         return tempBag2;
-        
-    }
+    }//end union
 
     /** adds the contents of the items that both the original and the input bag share. If they share the same item multiple times, it adds the least amount (i.e. bag 1 has item a twice and bag 2 has item b three times - it will add it only twice, since they don't both share it three times)
     @param input1 The bag that you would like to compare to the original bag
     @return contents that both bags share in the form of a bag*/
-    
+
     public BagInterface<T> intersection(BagInterface<T> input1 /*, BagInterface<T> input2*/)
     {
-        /* Attempt 1*****
-
-
-        int counter = 0;
-        int counter2 = 0;
-        @SuppressWarnings("unchecked")
-        T[] tempBag1 = (T[])new Object[input1.getCurrentSize()];
-        @SuppressWarnings("unchecked")
-        T[] tempBag2 = (T[])new Object[input2.getCurrentSize()];
-        tempBag1 = input1.toArray();
-        tempBag2 = input2.toArray();
-        @SuppressWarnings("unchecked")
-        T[] tempBag3 = (T[])new Object[tempBag1.length+tempBag2.length]; 
-        for (int i = 0; i<tempBag1.length;i++)
-        {
-            tempBag3[i] = tempBag1[i];
-            counter++;
-        }
-        for (int j = 0; j<tempBag2.length;j++)
-        {
-            tempBag3[counter]=tempBag2[j];
-            counter++;
-        }
-        for (int k = 0; k<tempBag3.length;k++)
-        {   
-            for(int l = 0; l<tempBag3.length;l++)
-            {
-                if (l!=k)
-                {
-                    if(tempBag3[l].equals(tempBag3[k]))
-                    {
-                    System.out.println("yes it equals");
-                    //tempBag3.removeEntry(k);
-                    }
-                }
-            }
-        }
-        ResizeableArrayBag<T> last = new ResizeableArrayBag<T>(counter2)
-        return last;
-        */
-
-
-        //Attempt 2*********
-
         BagInterface<T> bag1 = new ResizeableArrayBag<>();
         BagInterface<T> bag2 = new ResizeableArrayBag<>();
         ResizeableArrayBag<T> bag3 = (ResizeableArrayBag<T>)input1;
@@ -287,15 +219,13 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
             }
         }
         return bag1;
-    }
+    }//end intersection
 
     /** adds the difference of the amount of times a certain item occurs in both bags (i.e. if bag 1 has an item occur five times and bag 2 has the item occur three times, it will return that item in a bag two times)
     @param input1 The bag that you would like add to the original bag
     @return the difference of the contents that both bag 1 and 2 share in the form of a bag*/
     public BagInterface<T> difference(BagInterface<T> input1)
     {
-        //Attempt 1********
-
         BagInterface<T> bag1 = new ResizeableArrayBag<>();
         ResizeableArrayBag<T> bag2 = (ResizeableArrayBag<T>)input1;
         for(int i = 0; i < numberOfEntries; i++)
@@ -310,5 +240,5 @@ public class ResizeableArrayBag<T> implements BagInterface<T>
             }
         }
         return bag1;
-    }
+    }//end difference
 }
