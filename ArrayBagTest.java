@@ -20,6 +20,16 @@ public class ArrayBagTest
         }
         else
             System.out.println("no, arrayUnion doesn't have one of them.");
+        String[] newArray= array1.toArray();
+        for(int i = 0; i<newArray.length;i++)
+        {
+            System.out.println(array1.toArray()[i]);
+        }
+        /*for(int i = 0; i<array2.toArray().length;i++)
+        {
+            System.out.println(array2.toArray()[i]);
+        }
+        */
         //UNION END
 
 
