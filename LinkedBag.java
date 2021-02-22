@@ -197,19 +197,23 @@ public class LinkedBag<T> implements BagInterface<T>
     {
         BagInterface<T> tempBag = new LinkedBag<T>();
         BagInterface<T> otherBag = inputBag;
+        T[] array1 = this.toArray();
+        T[] array2 = otherBag.toArray();
+
         for(int i = 0; i<numberOfEntries; i++)
         {
            boolean found = false;
             for (int j = 0; j<otherBag.getCurrentSize();j++)
             { 
-                if(this.toArray()[i].equals(otherBag.toArray()[j]))
+                if(array1[i].equals(array2[j]))
                 {
+                    System.out.println("Bag 1 at spot " + i + " : " + array1[i] + " equals Bag 2 at spot " + j + " : "+ array2[j]);
                     found = true;
                 }
-                if(!found)
-                {
-                    tempBag.add(this.toArray()[i]);
-                }
+            }
+            if(!found)
+            {
+                    tempBag.add(array1[i]);
             }
         }
         return tempBag;
