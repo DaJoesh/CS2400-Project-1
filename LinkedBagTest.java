@@ -13,8 +13,8 @@ public class LinkedBagTest
         bag2.add("Animal");
         bag2.add("notBacteria");
         bag2.add("Bacteria");
-        //In bag1: Plant, Animal, Bacteria, Bacteria
-        //In bag2: notPlant, notAnimal, Animal, notBacteria, Bacteria
+        //In bag1: Plant, *Animal, *Bacteria, *Bacteria
+        //In bag2: notPlant, notAnimal, *Animal, notBacteria, *Bacteria
         BagInterface<String> unionBag = new LinkedBag<String>();
         BagInterface<String> intersectionBag = new LinkedBag<String>();
         BagInterface<String> differenceBag = new LinkedBag<String>();
