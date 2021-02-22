@@ -248,15 +248,6 @@ public class LinkedBag<T> implements BagInterface<T>
                 {
                     System.out.println("Bag 1 at spot " + i + " : " + array1[i] + " equals Bag 2 at spot " + j + " : "+ array2[j]);
                     found = true;
-<<<<<<< HEAD
-                }
-            }
-            if(!found)
-            {
-                    tempBag.add(array1[i]);
-            }
-        }
-=======
                 }//end if
                 if(!found)
                 {
@@ -264,7 +255,6 @@ public class LinkedBag<T> implements BagInterface<T>
                 }//end if
             }//end for
         }//end for
->>>>>>> dd547ac727e0200cff0eb663b778875cbf5e6490
         return tempBag;
     }//end difference
 }//end LinkedBag
