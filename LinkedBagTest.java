@@ -4,10 +4,10 @@ public class LinkedBagTest
     {
         //Tests on a bag that is empty
         System.out.println("Creating an empty bag.");
-        BatInterFace<Sting> aBag = new LinkedBag<>();
+        BagInterface<String> aBag = new LinkedBag<>();
         displayBag(aBag);
         testIsEmpty(aBag, true);
-        String[] testString1 = {"", "B"};
+        String[] testStrings1 = {"", "B"};
         testFrequency(aBag, testStrings1);
         testContains(aBag, testStrings1);
         testRemove(aBag, testStrings1);
@@ -18,7 +18,7 @@ public class LinkedBagTest
         
         //Tests on a bag that is not empty
         testIsEmpty(aBag, false);
-        String[] testStrins2 = {"A", "B", "C", "D", "Z"};
+        String[] testStrings2 = {"A", "B", "C", "D", "Z"};
         testFrequency(aBag, testStrings2);
         testContains(aBag, testStrings2);
         
@@ -26,7 +26,7 @@ public class LinkedBagTest
             String[] testStrings3 = {"", "B", "A", "C", "Z"};
         testRemove(aBag, testStrings3):
         
-            System.out.println("\nClearing the bag:"
+            System.out.println("\nClearing the bag:");
             aBag.Clear();
         testIsEmpty(aBag,true);
             displayBag(aBag);
