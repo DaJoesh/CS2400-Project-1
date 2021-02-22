@@ -1,3 +1,4 @@
+//By Josh and Russell
 public interface BagInterface<T>
 {
     /** Gets current number of entries in this bag

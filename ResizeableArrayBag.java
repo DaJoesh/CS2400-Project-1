@@ -1,3 +1,4 @@
+//By Josh and Russell
 public class ResizeableArrayBag<T> implements BagInterface<T>
 {
     private final T[] bag;

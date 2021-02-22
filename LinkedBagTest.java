@@ -1,6 +1,6 @@
+//By Josh and Russell
 public class LinkedBagTest
-{
-    public static void main(String[] args)
+{   public static void main(String[] args)
     {
         LinkedBag<String> bag1 = new LinkedBag<String>();
         LinkedBag<String> bag2 = new LinkedBag<String>();

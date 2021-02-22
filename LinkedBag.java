@@ -1,3 +1,4 @@
+//By Josh and Russell
 public class LinkedBag<T> implements BagInterface<T>
 {
     private Node firstNode;
