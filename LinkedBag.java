@@ -197,22 +197,21 @@ public class LinkedBag<T> implements BagInterface<T>
     {
         BagInterface<T> tempBag = new LinkedBag<T>();
         BagInterface<T> otherBag = inputBag;
-        int counter = 0;
         for(int i = 0; i<numberOfEntries; i++)
         {
-            counter = 0;
+           boolean found = false;
             for (int j = 0; j<otherBag.getCurrentSize();j++)
             { 
                 if(this.toArray()[i].equals(otherBag.toArray()[j]))
                 {
-                    counter++;
+                    found = true;
                 }
-                if(counter == 0)
+                if(!found)
                 {
                     tempBag.add(this.toArray()[i]);
                 }
             }
         }
         return tempBag;
-    } 
+    }
 }
