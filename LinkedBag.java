@@ -246,7 +246,6 @@ public class LinkedBag<T> implements BagInterface<T>
             { 
                 if(array1[i].equals(array2[j]))
                 {
-                    System.out.println("Bag 1 at spot " + i + " : " + array1[i] + " equals Bag 2 at spot " + j + " : "+ array2[j]);
                     found = true;
                 }//end if
                 if(!found)
