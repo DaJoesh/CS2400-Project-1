@@ -31,15 +31,7 @@ public class LinkedBag<T> implements BagInterface<T>
         private Node getNextNode()
         {
             return next;
-        }   
-        
-        //don't worry about this yet, might need it later!
-        private void setNextNode(Node nextNode)
-        {
-            next = nextNode;
         }
-
-
     }
 
     public boolean add(T newEntry)
@@ -167,22 +159,60 @@ public class LinkedBag<T> implements BagInterface<T>
     }
 
     
-    public BagInterface<T> union(BagInterface<T> inputBag1) {
-        // TODO Auto-generated method stub
-        return null;
+    public BagInterface<T> union(BagInterface<T> inputBag) 
+    {
+        BagInterface<T> tempBag = new LinkedBag<T>();
+        BagInterface<T> otherBag = inputBag;
+        for(int i = 0; i<numberOfEntries ; i++)
+        {
+            tempBag.add(this.toArray()[i]);
+        }
+        for (int j = 0; j<otherBag.getCurrentSize();j++)
+        {
+            tempBag.add(otherBag.toArray()[j]);
+        }
+        return tempBag;
+    }
+
+
+    public BagInterface<T> intersection(BagInterface<T> inputBag) 
+    {
+        BagInterface<T> tempBag = new LinkedBag<T>();
+        BagInterface<T> otherBag = inputBag;
+        for(int i = 0; i<numberOfEntries; i++)
+        {
+            for(int j = 0; j<otherBag.getCurrentSize(); j++)
+            {
+                if(this.toArray()[i].equals(otherBag.toArray()[j]))
+                {
+                    tempBag.add(this.toArray()[i]);
+                }
+            }
+        }
+        return tempBag;
     }
 
     
-    public BagInterface<T> intersection(BagInterface<T> inputBag1) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
-    public BagInterface<T> difference(BagInterface<T> inputBag1) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
+    public BagInterface<T> difference(BagInterface<T> inputBag) 
+    {
+        BagInterface<T> tempBag = new LinkedBag<T>();
+        BagInterface<T> otherBag = inputBag;
+        int counter = 0;
+        for(int i = 0; i<numberOfEntries; i++)
+        {
+            counter = 0;
+            for (int j = 0; j<otherBag.getCurrentSize();j++)
+            { 
+                if(this.toArray()[i].equals(otherBag.toArray()[j]))
+                {
+                    counter++;
+                }
+                if(counter == 0)
+                {
+                    tempBag.add(this.toArray()[i]);
+                }
+            }
+        }
+        return tempBag;
+    } 
 }
